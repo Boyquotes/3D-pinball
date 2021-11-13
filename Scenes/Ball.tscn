@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/Ball.tres" type="Material" id=1]
+
+[sub_resource type="PhysicsMaterial" id=14]
+rough = true
+bounce = 0.09
+
+[sub_resource type="SphereMesh" id=2]
+material = ExtResource( 1 )
+radius = 0.05
+height = 0.1
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.05
+
+[node name="Ball" type="RigidBody"]
+collision_layer = 2
+physics_material_override = SubResource( 14 )
+gravity_scale = 0.4
+continuous_cd = true
+can_sleep = false
+axis_lock_linear_z = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Ball Mesh" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+skeleton = NodePath("../../Background Plane")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
